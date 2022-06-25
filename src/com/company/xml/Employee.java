@@ -1,5 +1,9 @@
 package com.company.xml;
 
+import javax.xml.bind.annotation.*;
+
+@XmlType(propOrder = {"firstName", "lastName", "email", "phoneNumber", "password", "tag", "userRoledId" })
+@XmlRootElement( name = "employee" )
 public class Employee {
     private Long id;
     private String firstName;
@@ -25,11 +29,11 @@ public class Employee {
 
     public Employee() {
     }
-
+    @XmlAttribute
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
@@ -65,7 +69,6 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     public String getPassword() {
         return password;
     }
@@ -96,7 +99,5 @@ public class Employee {
                 + ", phoneNumber=" + phoneNumber + ", password=" + password + ", tag=" + tag + ", userRoledId="
                 + userRoledId + "]";
     }
-    
-    
 
 }
