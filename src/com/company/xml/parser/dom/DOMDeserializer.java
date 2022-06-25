@@ -33,39 +33,63 @@ public class DOMDeserializer {
         }
 
         return employees;
-
     }
 
     private static Employee getEmployee(Node node) {
         Element employeeElm = (Element) node;
-        Employee employee = new Employee();
+        Employee employee = creatEmployee(employeeElm);
+        processFirstName(employeeElm, employee);
+        processLastName(employeeElm, employee);
+        processEmail(employeeElm, employee);
+        processPhoneNumber(employeeElm, employee);
+        processPassword(employeeElm, employee);
+        processTag(employeeElm, employee);
+        processUserRoleIdElm(employeeElm, employee);
 
+        return employee;
+    }
+
+    private static Employee creatEmployee(Element employeeElm) {
+        Employee employee = new Employee();
         String rawId = employeeElm.getAttribute("id");
         long id = Long.parseLong(rawId);
         employee.setId(id);
+        return employee;
+    }
 
+    private static void processFirstName(Element employeeElm, Employee employee) {
         Element firstNameElm = (Element) employeeElm.getElementsByTagName("firstName").item(0);
         employee.setFirstName(firstNameElm.getTextContent());
+    }
 
+    private static void processLastName(Element employeeElm, Employee employee) {
         Element lastNameElm = (Element) employeeElm.getElementsByTagName("lastName").item(0);
         employee.setLastName(lastNameElm.getTextContent());
+    }
 
+    private static void processEmail(Element employeeElm, Employee employee) {
         Element emailElm = (Element) employeeElm.getElementsByTagName("email").item(0);
         employee.setEmail(emailElm.getTextContent());
+    }
 
+    private static void processPhoneNumber(Element employeeElm, Employee employee) {
         Element phoneNumberElm = (Element) employeeElm.getElementsByTagName("phoneNumber").item(0);
-        employee.setPhoneNumber(lastNameElm.getTextContent());
+        employee.setPhoneNumber(phoneNumberElm.getTextContent());
+    }
 
+    private static void processPassword(Element employeeElm, Employee employee) {
         Element passwordElm = (Element) employeeElm.getElementsByTagName("password").item(0);
         employee.setPassword(passwordElm.getTextContent());
+    }
 
+    private static void processTag(Element employeeElm, Employee employee) {
         Element tagElm = (Element) employeeElm.getElementsByTagName("tag").item(0);
         employee.setTag(tagElm.getTextContent());
+    }
 
+    private static void processUserRoleIdElm(Element employeeElm, Employee employee) {
         Element userRoleIdElm = (Element) employeeElm.getElementsByTagName("userRoleId").item(0);
         byte[] byteArray = userRoleIdElm.getTextContent().getBytes();
         employee.setUserRoledId(byteArray[0]);
-
-        return employee;
     }
 }
