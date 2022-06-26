@@ -1,13 +1,11 @@
 package com.company.xml.parser.jaxb;
 
 import java.io.InputStream;
-import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import com.company.xml.Employee;
 import com.company.xml.Employees;
 
 public class JAXBDeserializer {
